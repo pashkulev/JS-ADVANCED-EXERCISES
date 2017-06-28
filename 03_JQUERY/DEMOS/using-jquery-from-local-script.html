@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+    <p>This is a <a href="https://softuni.bg">link</a>.</p>
+    <ul>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+
+<script>
+    $(document).ready(function() {
+        $("body *").click(function(event) {
+            $(this).fadeOut();
+            $(document.body).append(
+                "Removed: " + this + "<br>\n");
+            event.preventDefault();
+            event.stopPropagation();
+        });
+    });
+</script>
+</body>
+</html>

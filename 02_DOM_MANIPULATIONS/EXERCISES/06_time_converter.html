@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Converter</title>
+    <style>
+        label, input {
+            display: inline-block;
+            width: 5em;
+        }
+        label {
+            text-align: right;
+        }
+    </style>
+</head>
+<body onload="attachEventsListeners()">
+<h1>Time Converter</h1>
+<div>
+    <label for="days">Days: </label>
+    <input type="text" id="days">
+    <input id="daysBtn" type="button" value="Convert">
+</div>
+<div>
+    <label for="hours">Hours: </label>
+    <input type="text" id="hours">
+    <input id="hoursBtn" type="button" value="Convert">
+</div>
+<div>
+    <label for="minutes">Minutes: </label>
+    <input type="text" id="minutes">
+    <input id="minutesBtn" type="button" value="Convert">
+</div>
+<div>
+    <label for="seconds">Seconds: </label>
+    <input type="text" id="seconds">
+    <input id="secondsBtn" type="button" value="Convert">
+</div>
+
+<script>
+    function attachEventsListeners() {
+        let buttons = document.querySelectorAll('input[type="button"]');
+        let inputs = document.querySelectorAll('input[type="text"]');
+
+        for (let button of buttons) {
+            button.addEventListener('click', processEvent);
+        }
+
+        function processEvent(event) {
+            let inputValue = event.target.previousElementSibling.value;
+            let units = event.target.previousElementSibling.id;
+
+            switch (units) {
+                case 'seconds':
+                    inputs[0].value = inputValue / 86400;
+                    inputs[1].value = inputValue / 3600;
+                    inputs[2].value = inputValue / 60;
+                    break;
+                case 'minutes':
+                    inputs[0].value = inputValue / 1440;
+                    inputs[1].value = inputValue / 60;
+                    inputs[3].value = inputValue * 60;
+                    break;
+                case 'hours':
+                    inputs[0].value = inputValue / 24;
+                    inputs[2].value = inputValue * 60;
+                    inputs[3].value = inputValue * 3600;
+                    break;
+                case 'days':
+                    inputs[1].value = inputValue * 24;
+                    inputs[2].value = inputValue * 1440;
+                    inputs[3].value = inputValue * 86400;
+                    break;
+            }
+        }
+    }
+</script>
+</body>
+</html>

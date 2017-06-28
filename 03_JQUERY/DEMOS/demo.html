@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<ul>
+    <li>first</li>
+    <li>second</li>
+    <li>third</li>
+</ul>
+<script>
+    // using JQuery
+    $('li').css({ 'background': 'blue', 'width':'300px'})
+        .mouseover(yellowBackground)
+        .mouseout(blueBackground);
+
+
+    // using JS native DOM manipulations
+    function yellowBackground() {
+        Array.from(document.getElementsByTagName('li'))
+            .forEach(e => e.style.backgroundColor = 'yellow');
+    }
+
+    function blueBackground() {
+        Array.from(document.getElementsByTagName('li'))
+            .forEach(e => e.style.backgroundColor = 'blue');
+    }
+</script>
+</body>
+</html>

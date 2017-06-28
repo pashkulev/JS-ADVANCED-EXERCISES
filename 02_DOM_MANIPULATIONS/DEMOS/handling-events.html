@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Handling</title>
+</head>
+<body>
+<div id='text'>Some text</div>
+<script>
+    let div = document.getElementById('text');
+
+//    div.onmouseout = function(event) {
+//        event.target.style.border = ""; // this === event.target
+//    };
+
+    //    div.onmouseover = function() {
+    //        this.style.border = "3px solid green";
+    //    };
+
+    div.addEventListener('mouseover', (event) => event.target.style.border = "3px solid green");
+    div.addEventListener('mouseout', (event) => event.target.style.border = "");
+
+</script>
+</body>
+</html>

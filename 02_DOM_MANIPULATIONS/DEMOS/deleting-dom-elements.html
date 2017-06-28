@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deleting DOM elements</title>
+</head>
+<body>
+    <ul id="items">
+        <li class="red">Red</li>
+        <li class="blue">Blue</li>
+        <li class="red">RedBullet</li>
+        <li class="red">Reeed</li>
+    </ul>
+
+    <script>
+        let redElements =
+            document.querySelectorAll("#items li.red");
+        redElements.forEach(li => {
+            li.parentNode.removeChild(li);
+        });
+
+    </script>
+
+</body>
+</html>

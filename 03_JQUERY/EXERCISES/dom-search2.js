@@ -2,11 +2,11 @@ function domSearch(selector, caseSensitive = false) {
     $(selector)
         .append($("<div>").addClass("add-controls")
             .append($("<label>Enter text:</label>"))
-            .append($("<input>"))
+            .append($("<input>").css("display", "inline-block"))
             .append($("<a>Add</a>").addClass("button").click(addToList)))
         .append($("<div>").addClass("search-controls")
             .append($("<label>Search:</label>"))
-            .append($("<input>").on("input", showMatchedItems)))
+            .append($("<input>").css("display", "inline-block").on("input", showMatchedItems)))
         .append($("<div>").addClass("result-controls")
             .append($("<ul>").addClass("items-list")));
 
@@ -26,15 +26,20 @@ function domSearch(selector, caseSensitive = false) {
 
     function showMatchedItems() {
         let searchText = $(".search-controls input").val();
-        let itemsList = $(".items-list li").css("display", "");
+        $(".items-list li").css("display", "");
 
         if (caseSensitive) {
-            itemsList.not($(`strong:contains(${searchText})`))
-                .css("display", "none");
+            $(".list-item strong").each((index, item) => {
+                if (item.textContent.indexOf(searchText) === -1) {
+                    $(item).parent().css("display", "none");
+                }
+            });
         } else {
-            itemsList.filter((index, item) =>
-                !$(item).find("strong").text().toLowerCase().includes(searchText.toLowerCase()))
-                .css("display", "none");
+            $(".list-item strong").each((index, item) => {
+                if (item.textContent.toLowerCase().indexOf(searchText.toLowerCase()) === -1) {
+                    $(item).parent().css("display", "none");
+                }
+            });
         }
     }
 

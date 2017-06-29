@@ -1,23 +1,19 @@
 function timer() {
-    let startBtn = $("#start-timer")
-        .click(startTimer);
-    let stopBtn = $("#stop-timer")
-        .click(stopTimer)
-        .prop("disabled", true);
+    $("#start-timer").click(startTimer);
+    $("#stop-timer").click(pauseTimer);
 
     let totalSeconds = 0;
-    let timer;
+    let timer = false;
 
     function startTimer() {
-        timer = setInterval(showTimer, 1000);
-        startBtn.prop("disabled", true);
-        stopBtn.prop('disabled', false);
+        if (timer === false) {
+            timer = setInterval(showTimer, 1000);
+        }
     }
 
-    function stopTimer() {
+    function pauseTimer() {
         clearInterval(timer);
-        startBtn.prop("disabled", false);
-        stopBtn.prop("disabled", true);
+        timer = false;
     }
 
     function showTimer() {
